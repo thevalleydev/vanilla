@@ -10,4 +10,5 @@ export default defineConfig({
   server: {
     middlewareMode: false,
   },
+  base: '/vanilla/',
 })
