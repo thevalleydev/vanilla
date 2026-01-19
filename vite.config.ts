@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
 import { ssgPlugin } from './plugins/ssg'
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
     tailwindcss(),
     ssgPlugin(),
@@ -10,5 +10,5 @@ export default defineConfig({
   server: {
     middlewareMode: false,
   },
-  base: '/vanilla/',
-})
+  base: mode === 'production' ? '/vanilla/' : '/',
+}))

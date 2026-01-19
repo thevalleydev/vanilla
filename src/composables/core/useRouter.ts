@@ -2,6 +2,9 @@ import { ref } from '@vue/reactivity';
 import type { Ref } from '@vue/reactivity';
 import type { Route } from '../../types';
 
+// Get base path from Vite config (injected at build time)
+const BASE_PATH = import.meta.env.BASE_URL || '/';
+
 interface UseRouterReturn {
   currentRoute: Ref<Route>;
   navigate: (path: string) => void;
@@ -12,7 +15,13 @@ interface UseRouterReturn {
 let routerInstance: UseRouterReturn | null = null;
 
 function parseRoute(pathname: string): Route {
-  const [pathPart, queryPart] = pathname.split('?');
+  // Strip base path from pathname
+  let path = pathname;
+  if (BASE_PATH !== '/' && pathname.startsWith(BASE_PATH)) {
+    path = pathname.slice(BASE_PATH.length - 1); // Keep leading slash
+  }
+  
+  const [pathPart, queryPart] = path.split('?');
   
   const query: Record<string, string> = {};
   if (queryPart) {
@@ -37,7 +46,9 @@ export function useRouter(): UseRouterReturn {
   const currentRoute = ref<Route>(parseRoute(window.location.pathname));
 
   function navigate(path: string) {
-    window.history.pushState({}, '', path);
+    // Add base path when navigating
+    const fullPath = BASE_PATH === '/' ? path : BASE_PATH + path.replace(/^\//, '');
+    window.history.pushState({}, '', fullPath);
     currentRoute.value = parseRoute(window.location.pathname);
     window.dispatchEvent(new PopStateEvent('popstate'));
   }
