@@ -1,4 +1,4 @@
-import{u as r,L as o,F as d,H as x,N as n,b as t,D as c,a as i}from"./Navigation-RxjrHXmL.js";import{a as l}from"./index-DsRL4NZR.js";function b(){const{sortedPosts:a}=l();return t`
+import{L as o,F as d,H as n,N as i,b as t,D as m,a as c}from"./Navigation-DdNyBFt5.js";import{c as g,u as x}from"./useHead-BdQ1YFeC.js";import{a as l}from"./index-DimeXeVl.js";function b(){const{sortedPosts:a}=l();return t`
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h2 class="text-4xl font-bold mb-10 text-slate-900 dark:text-slate-100">Blog</h2>
 
@@ -7,7 +7,7 @@ import{u as r,L as o,F as d,H as x,N as n,b as t,D as c,a as i}from"./Navigation
               ${a.value.map(e=>t`
                     <article class="border-b border-slate-200 dark:border-slate-800 pb-10 last:border-b-0">
                       <h3 class="text-2xl font-bold mb-3">
-                        ${i({href:`/blog/${e.slug}`,children:e.title,class:"text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"})}
+                        ${c({href:`/blog/${e.slug}`,children:e.title,class:"text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"})}
                       </h3>
                       <time class="text-slate-500 dark:text-slate-400 text-sm block mb-3"
                         >${new Date(e.date).toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"})}</time
@@ -25,4 +25,4 @@ import{u as r,L as o,F as d,H as x,N as n,b as t,D as c,a as i}from"./Navigation
             </div>
           `}
     </div>
-  `}function u(a){r("Blog");const{loadPosts:e}=l();return e().then(()=>{const s=o({header:t`${x()} ${n()}`,footer:d(),children:b()});c(s,a)}),()=>{}}export{u as render_page};
+  `}function k(a){const{loadPosts:e}=l(),s=g("WebPage").add("name","Blog - My Blog").add("description","Read my latest articles about web development, frameworks, and programming");return e().then(()=>{x({title:"Blog - My Blog",description:"Read my latest articles about web development, frameworks, and programming",ogTitle:"Blog - My Blog",ogDescription:"Read my latest articles about web development, frameworks, and programming",ogType:"website",twitterCard:"summary",jsonLd:s});const r=o({header:t`${n()} ${i()}`,footer:d(),children:b()});m(r,a)}),()=>{}}export{k as render_page};
