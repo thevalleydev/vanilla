@@ -1,6 +1,7 @@
 import { html, render } from 'lit-html';
 import type { TemplateResult } from 'lit-html';
-import { useTitle } from '../composables';
+import { useHead } from '../composables';
+import { createJsonLd } from '../lib/jsonld';
 import { Layout } from '../lib/Layout';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
@@ -28,7 +29,19 @@ function HomePage(): TemplateResult {
 }
 
 export function render_page(container: HTMLElement): () => void {
-  useTitle('Home');
+  const jsonLd = createJsonLd('WebPage')
+    .add('name', 'Home - My Blog')
+    .add('description', 'A lightweight, reactive blog built with Vite, Vue Reactivity, and lit-html');
+
+  useHead({
+    title: 'Home - My Blog',
+    description: 'A lightweight, reactive blog built with Vite, Vue Reactivity, and lit-html',
+    ogTitle: 'Home - My Blog',
+    ogDescription: 'A lightweight, reactive blog built with modern web technologies',
+    ogType: 'website',
+    twitterCard: 'summary',
+    jsonLd,
+  });
 
   const template = Layout({
     header: html`${Header()} ${Navigation()}`,

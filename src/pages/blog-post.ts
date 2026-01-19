@@ -1,7 +1,8 @@
 import { html, render } from 'lit-html';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 import type { TemplateResult } from 'lit-html';
-import { useTitle, useMarkdownPosts, useRouter } from '../composables';
+import { useHead, useMarkdownPosts, useRouter } from '../composables';
+import { createJsonLd } from '../lib/jsonld';
 import { Layout } from '../lib/Layout';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
@@ -29,8 +30,6 @@ function BlogPostPage(): TemplateResult {
       </div>
     `;
   }
-
-  useTitle(post.title);
 
   return html`
     <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -73,6 +72,37 @@ function BlogPostPage(): TemplateResult {
 }
 
 export function render_page(container: HTMLElement): () => void {
+  const router = useRouter();
+  const { getPostBySlug } = useMarkdownPosts();
+
+  const slug = router.currentRoute.value.path.split('/')[2];
+  const post = getPostBySlug(slug);
+
+  if (post) {
+    const jsonLd = createJsonLd('BlogPosting')
+      .addArticle(post.title, post.excerpt || '')
+      .addDates(post.date)
+      .add('author', {
+        '@type': 'Person',
+        name: 'Your Blog',
+      });
+
+    useHead({
+      title: `${post.title} - My Blog`,
+      description: post.excerpt || post.title,
+      ogTitle: post.title,
+      ogDescription: post.excerpt || post.title,
+      ogType: 'article',
+      twitterCard: 'summary',
+      jsonLd,
+    });
+  } else {
+    useHead({
+      title: '404 - Page Not Found',
+      description: 'The page you are looking for does not exist',
+    });
+  }
+
   const template = Layout({
     header: html`${Header()} ${Navigation()}`,
     footer: Footer(),

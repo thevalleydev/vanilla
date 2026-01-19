@@ -1,6 +1,7 @@
 import { html, render } from 'lit-html';
 import type { TemplateResult } from 'lit-html';
-import { useTitle, useMarkdownPosts } from '../composables';
+import { useHead, useMarkdownPosts } from '../composables';
+import { createJsonLd } from '../lib/jsonld';
 import type { MarkdownPost } from '../types';
 import { Layout } from '../lib/Layout';
 import { Header } from '../components/Header';
@@ -62,11 +63,24 @@ function BlogListPage(): TemplateResult {
 }
 
 export function render_page(container: HTMLElement): () => void {
-  useTitle('Blog');
   const { loadPosts } = useMarkdownPosts();
+
+  const jsonLd = createJsonLd('WebPage')
+    .add('name', 'Blog - My Blog')
+    .add('description', 'Read my latest articles about web development, frameworks, and programming');
 
   // Load posts and render after
   loadPosts().then(() => {
+    useHead({
+      title: 'Blog - My Blog',
+      description: 'Read my latest articles about web development, frameworks, and programming',
+      ogTitle: 'Blog - My Blog',
+      ogDescription: 'Read my latest articles about web development, frameworks, and programming',
+      ogType: 'website',
+      twitterCard: 'summary',
+      jsonLd,
+    });
+
     const template = Layout({
       header: html`${Header()} ${Navigation()}`,
       footer: Footer(),
