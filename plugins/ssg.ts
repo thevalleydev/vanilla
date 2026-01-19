@@ -118,13 +118,46 @@ export function ssgPlugin(options: SSGOptions = {}): Plugin {
     <meta property="og:url" content="https://yourdomain.com${route}" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="${title}" />
-    <meta name="twitter:description" content="${description}" />`;
+            <meta name="twitter:description" content="${description}" />
+            <meta name="x-prerender-route" content="${route}" />`;
 
           // Remove existing canonical links then inject meta and canonical
           html = html.replace(/<link rel="canonical"[^>]*>/g, '');
           html = html.replace('</head>', `${metaTags}
     <link rel="canonical" href="${route}" />
   </head>`);
+          
+            // Preload main stylesheet if present
+            const stylesheetMatch = html.match(/<link[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+\.css)["'][^>]*>/i);
+            if (stylesheetMatch) {
+              const cssHref = stylesheetMatch[1];
+              const escapedHref = cssHref.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+              const existingPreload = new RegExp(`<link[^>]*rel=["']preload["'][^>]*href=["']${escapedHref}["'][^>]*>`, 'i').test(html);
+              if (!existingPreload) {
+                html = html.replace(
+                  stylesheetMatch[0],
+                  `<link rel="preload" as="style" href="${cssHref}" crossorigin>\n${stylesheetMatch[0]}`
+                );
+              }
+            }
+
+          // Normalize DOCTYPE to its own line
+          html = html.replace(/<!doctype html>/i, '<!doctype html>\n');
+
+          // Modulepreload entry module scripts (speed up hydration)
+          const scriptModuleRegex = /<script[^>]*type=["']module["'][^>]*src=["']([^"']+)["'][^>]*><\/script>/gi;
+          const scriptMatches = Array.from(html.matchAll(scriptModuleRegex));
+          for (const m of scriptMatches) {
+            const fullTag = m[0];
+            const src = m[1];
+            const hasCrossorigin = /\bcrossorigin\b/.test(fullTag);
+            const preloadTag = `<link rel="modulepreload" as="script"${hasCrossorigin ? ' crossorigin' : ''} href="${src}">`;
+            const alreadyPreloaded = new RegExp(`<link[^>]*rel=["']modulepreload["'][^>]*href=["']${src.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["']`, 'i').test(html);
+            if (!alreadyPreloaded) {
+              // Insert preload immediately before the script tag
+              html = html.replace(fullTag, `${preloadTag}\n${fullTag}`);
+            }
+          }
 
           // Write to file
           const routePath = route === '/' ? '/index.html' : `${route}/index.html`;

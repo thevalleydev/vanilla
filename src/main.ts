@@ -15,6 +15,14 @@ async function router() {
   const { loadPosts } = useMarkdownPosts();
   
   const app = document.querySelector<HTMLDivElement>('#app')!;
+  const prerenderRoute = document
+    .querySelector('meta[name="x-prerender-route"]')
+    ?.getAttribute('content');
+
+  // Only clear if the pre-rendered route does not match the current route
+  if (prerenderRoute && prerenderRoute !== currentRoute.value.path) {
+    app.innerHTML = '';
+  }
 
   // Load markdown posts
   await loadPosts();
