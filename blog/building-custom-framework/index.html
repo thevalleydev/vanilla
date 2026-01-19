@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en"><head>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/svg+xml" href="/vite.svg">
+  <link rel="icon" type="image/svg+xml" href="/vanilla/vite.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Building a Custom Framework - My Blog</title>
-  <link rel="modulepreload" as="script" crossorigin="" href="/assets/index-DyMvCeu2.js">
-<script type="module" crossorigin="" src="/assets/index-DyMvCeu2.js"></script>
-  <link rel="preload" as="style" href="/assets/index-Dvdwvyji.css" crossorigin="">
-<link rel="stylesheet" crossorigin="" href="/assets/index-Dvdwvyji.css">
-<link rel="modulepreload" as="script" crossorigin="" href="/assets/home-pH0p2uwG.js"><link rel="modulepreload" as="script" crossorigin="" href="/assets/Navigation-B3dD36qV.js">
+  <link rel="modulepreload" as="script" crossorigin="" href="/vanilla/assets/index-DiEJ5ono.js">
+<script type="module" crossorigin="" src="/vanilla/assets/index-DiEJ5ono.js"></script>
+  <link rel="preload" as="style" href="/vanilla/assets/index-Dvdwvyji.css" crossorigin="">
+<link rel="stylesheet" crossorigin="" href="/vanilla/assets/index-Dvdwvyji.css">
+
     <meta name="description" content="A lightweight, reactive blog built with Vite, Vue Reactivity, and lit-html">
     <meta property="og:title" content="Home - My Blog">
     <meta property="og:description" content="A lightweight, reactive blog built with Vite, Vue Reactivity, and lit-html">
@@ -19,7 +19,7 @@
             <meta name="twitter:description" content="A lightweight, reactive blog built with Vite, Vue Reactivity, and lit-html">
             <meta name="x-prerender-route" content="/">
     
-  <link rel="modulepreload" as="script" crossorigin="" href="/assets/blog-post-fJJLx_Cw.js">
+  
     <meta name="description" content="An exploration of building your own lightweight reactive framework without using full frameworks." />
     <meta property="og:title" content="Building a Custom Framework - My Blog" />
     <meta property="og:description" content="An exploration of building your own lightweight reactive framework without using full frameworks." />
@@ -33,91 +33,7 @@
   </head>
 
 <body>
-  <div id="app"><!---->
-    <div class="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
-      <!--?lit$701669856$--><!--?lit$701669856$-->
-    <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-10 transition-colors">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-        <h1 class="text-2xl font-bold text-slate-900 dark:text-slate-100">My Blog</h1>
-        <!--?lit$701669856$-->
-    <button class="p-2 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors" aria-label="Toggle theme">
-      <!-- Sun icon - shown in dark mode -->
-      <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
-      </svg>
-      <!-- Moon icon - shown in light mode -->
-      <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-      </svg>
-    </button>
-  
-      </div>
-    </header>
-   <!--?lit$701669856$-->
-    <nav class="bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 transition-colors">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex gap-6">
-        <!--?lit$701669856$--><a href="/" class="text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 font-medium transition-colors">
-    <!--?lit$701669856$-->Home
-  </a>
-        <!--?lit$701669856$--><a href="/blog" class="text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 font-medium transition-colors">
-    <!--?lit$701669856$-->Blog
-  </a>
-      </div>
-    </nav>
-  <!--?-->
-      <main class="flex-1">
-        <!--?lit$701669856$-->
-    <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <header class="mb-10 border-b border-slate-200 dark:border-slate-800 pb-8">
-        <h1 class="text-4xl font-bold mb-4 text-slate-900 dark:text-slate-100"><!--?lit$701669856$-->Building a Custom Framework</h1>
-        <div class="flex items-center justify-between text-slate-600 dark:text-slate-400">
-          <time class="text-sm"><!--?lit$701669856$-->January 18, 2026</time>
-          <!--?lit$701669856$-->
-                <div class="flex flex-wrap gap-2">
-                  <!--?lit$701669856$--><!----><span class="text-xs bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-3 py-1 rounded-full"><!--?lit$701669856$-->development</span><!----><!----><span class="text-xs bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-3 py-1 rounded-full"><!--?lit$701669856$-->typescript</span><!----><!----><span class="text-xs bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-3 py-1 rounded-full"><!--?lit$701669856$-->vite</span><!---->
-                </div>
-              
-        </div>
-      </header>
-
-      <div class="prose prose-slate dark:prose-invert max-w-none mb-12">
-        <!--?lit$701669856$--><h1>Building a Custom Framework</h1>
-<p>Sometimes you want more control than a full framework provides, but still want the benefits of reactivity. That's when building your own lightweight solution makes sense.</p>
-<h2>The Stack</h2>
-<ul>
-<li><strong>Vite</strong> for lightning-fast development and optimized builds</li>
-<li><strong>@vue/reactivity</strong> for reactive state management</li>
-<li><strong>lit-html</strong> for efficient template rendering</li>
-<li><strong>Tailwind CSS</strong> for styling</li>
-</ul>
-<h2>Why This Approach?</h2>
-<ol>
-<li><strong>Minimal overhead</strong> - Only include what you need</li>
-<li><strong>Full control</strong> - Shape the architecture to your specific needs</li>
-<li><strong>Learning experience</strong> - Understand how reactivity works under the hood</li>
-<li><strong>Performance</strong> - No unnecessary abstractions</li>
-</ol>
-<p>This approach is perfect for sites, dashboards, and applications that don't need the full power of Vue or React.</p>
-
-      </div>
-
-      <div class="border-t border-slate-200 dark:border-slate-800 pt-8">
-        <!--?lit$701669856$--><a href="/blog" class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors">
-    <!--?lit$701669856$-->← Back to Blog
-  </a>
-      </div>
-    </article>
-  
-      </main>
-      <!--?lit$701669856$-->
-    <footer class="bg-slate-100 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 mt-auto transition-colors">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-slate-600 dark:text-slate-400">
-        <p>© <!--?lit$701669856$-->2026 My Blog. Built with Vite + Vue Reactivity + lit-html.</p>
-      </div>
-    </footer>
-  
-    </div>
-  </div>
+  <div id="app"></div>
 
 
 </body></html>

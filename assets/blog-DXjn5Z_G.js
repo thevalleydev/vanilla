@@ -1,4 +1,4 @@
-import{u as r,L as o,F as d,H as x,N as n,b as t,D as c,a as i}from"./Navigation-B3dD36qV.js";import{a as l}from"./index-DyMvCeu2.js";function b(){const{sortedPosts:a}=l();return t`
+import{u as r,L as o,F as d,H as x,N as n,b as t,D as c,a as i}from"./Navigation-DhQka-37.js";import{a as l}from"./index-DiEJ5ono.js";function b(){const{sortedPosts:a}=l();return t`
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h2 class="text-4xl font-bold mb-10 text-slate-900 dark:text-slate-100">Blog</h2>
 
